@@ -5,15 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/note-icon-list.svg" type="image/svg">
     <link rel="stylesheet" href="assets/styles/style.css">
-    <title>Notes</title>
+    <link rel="stylesheet" href="assets/styles/normalize.css">
+    <title>.my notes</title>
 </head>
 
 <body>
-    <h1>My fancy notes</h1>
-    <div id="notes"></div>
-    <textarea name="note" id="add-note"></textarea>
-    <button type="button" onclick="addNote();">add note</button>
+    <!-- основной заголовок -->
+    <h1 id="head-title">.my notes</h1>
+    <!-- секция добавления заметки -->
+    <section id="add-box">
+        <!-- обертка в див для создания прилипающего эффекта -->
+        <div class="sticky">
+            <!-- заголовок секции добавления -->
+            <h2 class="add-box__title">create<br>new note</h2>
+            <!-- инпут для ввода заголовка заметки -->
+            <input name="note-title" id="add-box__note-title" placeholder="title"></input>
+            <!-- поле ввода текста заметки -->
+            <textarea name="note" id="add-box__note-input" placeholder="write down your note"></textarea>
+            <!-- кнопка добавления заметки -->
+            <button id="add-box__button" type="button" onclick="addNote();">add note</button>
+        </div>
+    </section>
+
+    <!-- секция вывода заметок -->
+    <section id="notes-box">
+        <!-- контейнер для генерируемых заметок -->
+        <div id="notes"></div>
+        <!-- кнопка удаления всех заметок -->
+        <button id="notes-box__button_clear" type="button" onclick="clearAll();">clear all</button>
+    </section>
+
     <script src="assets/script/notes.js"></script>
 </body>
 

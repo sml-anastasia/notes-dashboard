@@ -1,0 +1,76 @@
+#notes-box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    grid-area: notes;
+    background-color: transparent;
+}
+
+#notes {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.note {
+    width: 15em;
+    height: 15em;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    overflow-y: scroll;
+    backdrop-filter: blur(5px);
+}
+
+#note-title {
+    margin-top: 0;
+    font-family: $textFont;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: $lightColor;
+    border-bottom: 0.5px solid $lightColor;
+}
+
+#note-text {
+    margin-top: 0;
+    font-family: $textFont;
+    font-weight: normal;
+    font-style: normal;
+    color: $lightColor;
+}
+
+#note-btn {
+    width: 35px;
+    height: 35px;
+    margin: auto 0 0 auto;
+    border: none;
+    background-color: transparent;
+}
+
+#note-btn img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+#notes-box__button_clear {
+    width: 7rem;
+    height: 2rem;
+    margin: 2% 5% 0 auto;
+    background: $lightColor;
+    border: none;
+    border-radius: 8px;
+    font-family: $titleFont;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1rem;
+    color: $textColor;
+}

@@ -1,28 +1,36 @@
-let notes = []; //пустой массив для заметок
+let notes = []; //массив для текста заметок
+let titles = []; //массив для заголовков
+let generatedNotes = []; //массив для созданного дива
 
-document.addEventListener("DOMContentLoaded", function (event) { //действие при перезагрузке страницы
-let addedNote = localStorage.getItem('note'); //переменная для ключа в хранилище
+document.addEventListener("DOMContentLoaded", function (event) {
+    let addedNote = localStorage.getItem('note'); //переменная для ключа в хранилище
     if (addedNote != null) { //если есть такой ключ в хранилище
-        notes = JSON.parse(addedNote); //то массив-строку переделываем обратно в массив
+        generatedNotes = JSON.parse(addedNote); //то массив-строку переделываем обратно в массив
     }
-
-    if (notes.length > 0) {
-        for (let n of notes) {
-        document.getElementById("notes").innerHTML += `<div>${n}<div> <br>`;
-        } //перебираем каждый элемент массива с добавленными заметками и формируем див с конкретной заметкой
-    } //здесь цикл отвечает за появление списка после обновления страницы
+    if (generatedNotes.length > 0) {
+        for (noteString of generatedNotes) {
+            document.getElementById("notes").innerHTML += noteString;
+        }
+    }
 });
 
-function addNote() {
-    let note = document.getElementById("add-note").value; //берем значение из textarea
-    notes.push(note); //добавление в массив заметки
+function addNote() { //функция добавления заметки
+    let note = document.getElementById("add-box__note-input").value; //переменная для введенного текста заметки
+    notes.push(note); //добавление в массив
+    let title = document.getElementById("add-box__note-title").value; //переменная для введенного заголовка заметки
+    titles.push(title); //добавление в массив
+    let noteString = ''; //переменная для генерируемой заметки
+    for (i = 0; i < notes.length; i++) { //перебираем каждый элемент массива добавленных текстов, цикл с счетчиком, потому что нужно склеить массив заголовков и массив текстов
+        noteString = `<div class="note"><h3 id="note-title">${title}</h3><p id="note-text">${note}</p><button id="note-btn" type="button" onclick="deleteNote();"><img src="assets/images/note-icon-delete.svg" alt="delete"></button></div>`; //создаем заметку в виде дива с заголовком и кнопкой удалить (еще в процессе)
+    }
+    generatedNotes.push(noteString); //добавление в массив новых заметок
+    document.getElementById("notes").innerHTML += noteString; //вывод в див
 
-    document.getElementById("notes").innerHTML = ''; //эта строчка убирает дублирование введенного текста, заметки просто появляются друг за другом
-    localStorage.setItem('note', JSON.stringify(notes)); //создание ключа и значения в хранилище, значение берется из массива, который сначала преобразуем в строку
+    localStorage.setItem('note', JSON.stringify(generatedNotes)); //записываем ключ-значение в хранилище
+}
 
-    if (notes.length > 0) {
-        for (let n of notes) {
-            document.getElementById("notes").innerHTML += `<div>${n}<div> <br>`;
-        } //перебираем каждый элемент массива с добавленными заметками и формируем див с конкретной заметкой
-    } //здесь цикл отвечает за то, чтобы заметки всегда были на экране, без него они пропадают при введеннии новой, но появляются после обновления страницы
+function clearAll() { //функция очищения всех заметок из хранилища и из документа
+    localStorage.clear(); //очищаем всё хранилище
+    document.querySelectorAll(".note").forEach(note => { note.style.display = "none" }); //выбираем все созданные дивы, перебираем и присваиваем каждому стиль display: none;
+    //нагуглила просто замечательный способ
 }
