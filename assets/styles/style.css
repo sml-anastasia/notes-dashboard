@@ -120,9 +120,9 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: row-reverse wrap-reverse;
+          flex-flow: row-reverse wrap-reverse;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
