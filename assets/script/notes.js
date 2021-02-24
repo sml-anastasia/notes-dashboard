@@ -30,13 +30,7 @@ function addNote() { //функция добавления заметки
 }
 
 function clearAll() { //функция очищения всех заметок из хранилища и из документа
-    localStorage.clear(); //очищаем всё хранилище
+    localStorage.removeItem('note'); //очищаем всё хранилище
     document.querySelectorAll(".note").forEach(note => { note.style.display = "none" }); //выбираем все созданные дивы, перебираем и присваиваем каждому стиль display: none;
     //нагуглила просто замечательный способ
 }
-
-/*function deleteNote() {
-    let deletedNote = JSON.parse(this.addedNote);
-    generatedNotes.pop(this.deletedNote);
-    localStorage.setItem('note', JSON.stringify(generatedNotes));
-}*/
