@@ -69,7 +69,7 @@ button {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #f9f9fb;
-    color: #BBD1D9;
+    color: #cfcfcf;
 }
 
 #add-box__note-input {
@@ -81,7 +81,7 @@ button {
     border: 2px dashed #f9f9fb;
     border-radius: 8px;
     overflow-y: scroll;
-    color: #BBD1D9;
+    color: #cfcfcf;
 }
 
 .add-box__title {
