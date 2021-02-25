@@ -4,11 +4,12 @@
 let elems = document.getElementsByClass("note");
 for (let i = 0; i < elems.length; i++)
 elems[i].style.display = "none";
+
+
+background: -webkit-gradient(linear, right top, left top, from(#53889D), to(#BBD1D9));
+    background: linear-gradient(270deg, #53889D 0%, #BBD1D9 100%);
+
 */
-
-
-
-
 /*for (let i = 0; i < generatedNotes.length; i++) {
         if (generatedNotes[i].id == id) {
             generatedNotes.splice(id, 1);
