@@ -20,14 +20,29 @@
         <div class="sticky">
             <!-- заголовок секции добавления -->
             <h2 class="add-box__title">create<br>new note</h2>
-            <!-- инпут для ввода заголовка заметки -->
-            <input name="note-title" id="add-box__note-title" placeholder="title"></input>
-            <!-- поле ввода текста заметки -->
-            <textarea name="note" id="add-box__note-input" placeholder="write down your note"></textarea>
+
             <!-- кнопка добавления заметки -->
-            <button id="add-box__button" type="button" onclick="addNote();">add note</button>
+            <div id="add-box__button">
+                <a href="#myModal" class="btn__link">add note</a>
+            </div>
         </div>
     </section>
+
+    <!-- модальное окно с вводом текста -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <form class="noteForm">
+                <!-- инпут для ввода заголовка заметки -->
+                <input name="note-title" id="add-box__note-title" placeholder="title"></input>
+                <!-- поле ввода текста заметки -->
+                <textarea name="note" id="add-box__note-input" placeholder="write down your note"></textarea>
+                <button type="submit" name="submit" class="submit">add</button>
+                <div>
+                    <a href="#close" class="cancel">cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- секция вывода заметок -->
     <section id="notes-box">
@@ -37,7 +52,7 @@
         <div id="notes"></div>
     </section>
 
-    <script src="assets/script/notes.js"></script>
+    <script src="assets/script/notes2.js"></script>
 </body>
 
 </html>

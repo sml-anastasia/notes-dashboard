@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     padding-bottom: 5%;
     display: -ms-grid;
@@ -10,12 +14,22 @@ body {
     grid-template-areas: "title title title title""add notes notes notes";
     background-image: url("../images/leaves.jpg");
     background-attachment: fixed;
-    background-color: #53889D;
+    background-color: #032407;
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+a {
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5em;
+    color: #f9f9fb;
+}
+
+a,
 button {
     cursor: pointer;
 }
@@ -69,7 +83,7 @@ button {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #f9f9fb;
-    color: #cfcfcf;
+    color: #f9f9fb;
 }
 
 #add-box__note-input {
@@ -81,7 +95,7 @@ button {
     border: 2px dashed #f9f9fb;
     border-radius: 8px;
     overflow-y: scroll;
-    color: #cfcfcf;
+    color: #f9f9fb;
 }
 
 .add-box__title {
@@ -95,14 +109,14 @@ button {
 #add-box__button {
     width: 10.2rem;
     height: 3rem;
+    display: flex;
     background: rgba(242, 208, 92, 0.8);
     border-radius: 8px;
     border: none;
-    font-family: "Playfair Display", serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1.5em;
-    color: #f9f9fb;
+}
+
+.btn__link {
+    margin: auto;
 }
 
 #notes-box {
@@ -147,8 +161,6 @@ button {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     -webkit-box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     background: rgba(255, 255, 255, 0.1);
@@ -192,10 +204,9 @@ button {
     padding: 0;
 }
 
-#notes-box__button_clear {
-    width: 7rem;
+#notes-box__button_clear,
+.submit {
     height: 2rem;
-    margin: 2% 5% 0 auto;
     background: #f9f9fb;
     border: none;
     border-radius: 8px;
@@ -204,4 +215,49 @@ button {
     font-style: normal;
     font-size: 1rem;
     color: #7d7987;
+}
+
+#notes-box__button_clear {
+    width: 7rem;
+    margin: 2% 5% 0 auto;
+}
+
+.submit {
+    width: 5rem;
+    margin-left: auto;
+}
+
+.modal {
+    position: fixed;
+    top: -20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.5rem;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: 0.2s ease-in;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal:target {
+    opacity: 1;
+    top: 0;
+    pointer-events: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 400px;
+    margin: 10% auto;
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.192);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.192);
+    padding: 2rem;
+    border-radius: 5px;
+    background: rgba(242, 208, 92, 0.8);
 }
