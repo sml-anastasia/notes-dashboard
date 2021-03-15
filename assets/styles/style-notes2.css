@@ -140,19 +140,20 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
+    -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
-    -ms-flex-flow: row-reverse wrap-reverse;
-    flex-flow: row-reverse wrap-reverse;
+    -ms-flex-flow: column-reverse wrap-reverse;
+    flex-flow: column-reverse wrap-reverse;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    align-items: center;
 }
 
 .note-item {
-    width: 15em;
-    height: 15em;
-    margin: 2rem;
+    width: 30em;
+    height: auto;
+    margin: 1rem;
     padding: 1rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -160,7 +161,8 @@ button {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     -webkit-box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     background: rgba(255, 255, 255, 0.1);
@@ -172,27 +174,18 @@ button {
     backdrop-filter: blur(5px);
 }
 
-#note-title {
-    margin-top: 0;
-    font-family: "Mulish", sans-serif;
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: #f9f9fb;
-    border-bottom: 0.5px solid #f9f9fb;
-}
-
-#note-text {
-    margin-top: 0;
+.note-title,
+.note-text {
+    margin: 0;
     font-family: "Mulish", sans-serif;
     font-weight: normal;
     font-style: normal;
     color: #f9f9fb;
 }
 
-#note-btn {
-    width: 35px;
-    height: 35px;
-    margin: auto 0 0 auto;
+.note-delete {
+    width: 20px;
+    height: 20px;
     border: none;
     background-color: transparent;
 }
