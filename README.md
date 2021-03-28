@@ -1,5 +1,4 @@
-# JS-practise
-1. notes interface:
+# notes interface
 - adding notes with titles
 - clear storage key
 - note card made with glass morphism effect
