@@ -1,2 +1,7 @@
 # JS-practise
-1. notes interface (adding notes with titles, clear all storage; note-block made with glass morphism effect, adding block is sticky, so after creating more than 6 notes you still can add a new note without scrolling up to adding block), latest notes are the first in container 
+1. notes interface:
+- adding notes with titles
+- clear storage key
+- note card made with glass morphism effect
+- adding block is sticky and has modal window with form
+- latest notes are the first in container
