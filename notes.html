@@ -6,35 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/note-icon-list.svg" type="image/svg">
-    <link rel="stylesheet" href="assets/styles/style-notes2.css">
+    <link rel="stylesheet" href="assets/styles/style-notes.css">
     <link rel="stylesheet" href="assets/styles/normalize.css">
     <title>.my notes</title>
 </head>
 
 <body>
-    <!-- основной заголовок -->
     <h1 id="head-title">.my notes</h1>
-    <!-- секция добавления заметки -->
     <section id="add-box">
-        <!-- обертка в див для создания прилипающего эффекта -->
         <div class="sticky">
-            <!-- заголовок секции добавления -->
             <h2 class="add-box__title">create<br>new note</h2>
-
-            <!-- кнопка добавления заметки -->
             <div id="add-box__button">
                 <a href="#myModal" class="btn__link">add note</a>
             </div>
         </div>
     </section>
 
-    <!-- модальное окно с вводом текста -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <form class="noteForm">
-                <!-- инпут для ввода заголовка заметки -->
                 <input name="note-title" id="add-box__note-title" placeholder="title"></input>
-                <!-- поле ввода текста заметки -->
                 <textarea name="note" id="add-box__note-input" placeholder="write down your note"></textarea>
                 <button type="submit" name="submit" class="submit">add</button>
                 <div>
@@ -44,15 +35,12 @@
         </div>
     </div>
 
-    <!-- секция вывода заметок -->
     <section id="notes-box">
-        <!-- кнопка удаления всех заметок -->
         <button id="notes-box__button_clear" type="button" onclick="clearAll();">clear all</button>
-        <!-- контейнер для генерируемых заметок -->
         <div id="notes"></div>
     </section>
 
-    <script src="assets/script/notes3.js"></script>
+    <script src="assets/script/notes.js"></script>
 </body>
 
 </html>

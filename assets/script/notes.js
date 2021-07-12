@@ -1,60 +1,97 @@
-let notes = []; //массив для текста заметок
-let titles = []; //массив для заголовков
-let generatedNotes = []; //массив для созданного дива
+let modal = document.querySelector(".modal");
+let noteForm = document.querySelector(".noteForm");
+let noteDiv = document.querySelector("#notes");
+let cancel = document.querySelector(".cancel");
+let noteDeleteButtons;
+let noteList = [];
 
 document.addEventListener("DOMContentLoaded", function (event) {
-    let addedNote = localStorage.getItem('note'); //переменная для ключа в хранилище
-    if (addedNote != null) { //если есть такой ключ в хранилище
-        generatedNotes = JSON.parse(addedNote); //то массив-строку переделываем обратно в массив
-    }
-    if (generatedNotes.length > 0) {
-        for (noteString of generatedNotes) {
-            document.getElementById("notes").innerHTML += noteString;
-        }
+    noteList = JSON.parse(localStorage.getItem('notes'));
+    if (noteList != null) {
+        appendNotes();
     }
 });
 
-function addNote() { //функция добавления заметки
-    let title = document.getElementById("add-box__note-title").value; //переменная для введенного заголовка заметки
-    let note = document.getElementById("add-box__note-input").value; //переменная для введенного текста заметки
-    titles.push(title); //добавление в массив
-    notes.push(note); //добавление в массив
-    let noteString = ''; //переменная для генерируемой заметки
-    for (i = 0; i < notes.length; i++) { //перебираем каждый элемент массива добавленных текстов, цикл с счетчиком, потому что нужно склеить массив заголовков и массив текстов
-        noteString = `<div id="note${i}" class="note"><h3 id="note-title">${title}</h3><p id="note-text">${note}</p><button id="note-btn" type="button" onclick="deleteNote(${i});"><img src="assets/images/note-icon-delete.svg" alt="delete"></button></div>`; //создаем заметку в виде дива с заголовком и кнопкой удалить (еще в процессе)
-    }
-    generatedNotes.push(noteString); //добавление в массив новых заметок
-    document.getElementById("notes").innerHTML += noteString; //вывод в див
+noteForm.addEventListener('submit', (event) => {
+    addNote(event);
+});
 
-    localStorage.setItem('note', JSON.stringify(generatedNotes)); //записываем ключ-значение в хранилище
+function addNote(event) {
+    event.preventDefault();
+
+    let newNote = {};
+    
+    let title = document.querySelector("#add-box__note-title");
+    let note = document.querySelector("#add-box__note-input");
+
+    if (title.value == '' || note.value == '') {
+        return alert("Please, enter both fields");
+    } else {
+        newNote.title = title.value;
+        newNote.note = note.value;
+    }
+    
+    title.value = '';
+    note.value = '';
+    noteList.push(newNote);
+    appendNotes();
+    cancel.click();
 }
 
-function clearAll() { //функция очищения всех заметок из хранилища и из документа
-    localStorage.removeItem('note'); //очищаем ключ
+function appendNotes() {
+    let notes = document.querySelectorAll(".note-item");
+    if (notes.length > 0) {
+        notes.forEach(note => {
+            note.remove();
+        })
+    }
+
+    noteList.map(note => {
+        let noteBox = document.createElement('div');
+        noteBox.classList = 'note-item';
+        let noteTitle = document.createElement('span');
+        noteTitle.innerText = note.title;
+        noteTitle.classList = 'note-title';
+        let noteText = document.createElement('span');
+        noteText.innerText = note.note;
+        noteText.classList = 'note-text';
+        let noteDelete = document.createElement('img');
+        noteDelete.src = 'assets/images/note-icon-delete.svg';
+        noteDelete.classList.add('note-delete');
+
+        noteBox.appendChild(noteTitle);
+        noteBox.appendChild(noteText);
+        noteBox.appendChild(noteDelete);
+        
+        noteDiv.appendChild(noteBox);
+        getDeleteButtons();
+        localStorage.setItem('notes', JSON.stringify(noteList));
+    })
+}
+
+function getDeleteButtons() {
+    noteDeleteButtons = Array.from(document.querySelectorAll('.note-delete'));
+    noteDeleteButtons.forEach(button => {
+        let noteToDelete = button.previousSibling.previousSibling.innerText;
+        button.addEventListener('click', () => {
+            deleteNote(noteToDelete);
+        })
+    })
+}
+
+function deleteNote(noteToDelete) {
+    for(let i = 0; i < noteList.length; i++) {
+        if(noteList[i].title == noteToDelete) {
+            noteList.splice(i, 1);
+        }
+    }
+    localStorage.setItem('notes', JSON.stringify(noteList));
+    appendNotes();
+}
+
+
+/*function clearAll() { //функция очищения всех заметок из хранилища и из документа
+    localStorage.removeItem('notes'); //очищаем ключ
     document.querySelectorAll('.note').forEach(note => { note.style.display = "none" }); //выбираем все созданные дивы, перебираем и присваиваем каждому стиль display: none;
     //нагуглила просто замечательный способ
-}
-
-function deleteNote(id) {
-    generatedNotes = JSON.parse(localStorage.getItem('note'));
-    generatedNotes.splice(id, 1);
-    if (generatedNotes.length == 1) {
-        generatedNotes = [];
-    }
-    document.querySelector("#note" + id).style.display = "none";
-    localStorage.setItem('note', JSON.stringify(generatedNotes));
-}
-
-
-/*
-
-function deleteNote(id) {
-    generatedNotes = JSON.parse(localStorage.getItem('note'));
-    for (i = 0; i < generatedNotes.length; i++) {
-        generatedNotes.splice(id, 1);
-        document.querySelector("#note" + id).style.display = "none";
-        localStorage.setItem('note', JSON.stringify(generatedNotes));
-    }
-}
-
-*/
+}*/
